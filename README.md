@@ -135,3 +135,11 @@ If you wish to train the model from scratch or fine-tune it further:
 ## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+## 👥 Contributors
+
+*   **Krishna Agarwal** - [GitHub](https://github.com/Krishna-Agarwal04)
+*   **Prakhar Goel**
+
