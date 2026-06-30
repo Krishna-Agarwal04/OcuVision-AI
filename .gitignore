@@ -1,0 +1,22 @@
+# Python environment & cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv
+env/
+venv/
+
+# Deep Learning weights & database (Very large files)
+model.pth
+retino_db.sqlite
+uploads/
+dataset/
+
+# Frontend dependencies & build files
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+.DS_Store
