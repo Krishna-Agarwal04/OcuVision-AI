@@ -8,8 +8,8 @@ from reportlab.graphics.shapes import Drawing, Rect, String, Line, Polygon, Grou
 
 def create_architecture_diagram():
     # Create a vector drawing for the System Architecture
-    # Width: 500, Height: 200
-    d = Drawing(520, 220)
+    # Width: 530, Height: 220
+    d = Drawing(530, 220)
     
     # Theme Colors
     primary_color = colors.HexColor("#0b3c5d")
@@ -19,46 +19,54 @@ def create_architecture_diagram():
     text_color = colors.HexColor("#1f2d3d")
     
     # 1. Frontend Box
-    d.add(Rect(10, 10, 120, 60, fillColor=bg_color, strokeColor=primary_color, strokeWidth=2, rx=5, ry=5))
-    d.add(String(25, 45, "Client (Next.js)", fontName="Helvetica-Bold", fontSize=11, fillColor=primary_color))
-    d.add(String(20, 25, "Vercel Cloud Hosting", fontName="Helvetica", fontSize=8, fillColor=text_color))
+    # x=10, width=130 -> Center = 75
+    d.add(Rect(10, 10, 130, 60, fillColor=bg_color, strokeColor=primary_color, strokeWidth=2, rx=5, ry=5))
+    d.add(String(75, 45, "Client (Next.js)", fontName="Helvetica-Bold", fontSize=11, fillColor=primary_color, textAnchor="middle"))
+    d.add(String(75, 25, "Vercel Cloud Hosting", fontName="Helvetica", fontSize=8, fillColor=text_color, textAnchor="middle"))
     
     # Arrow 1: Frontend -> Backend
-    d.add(Line(130, 40, 190, 40, strokeColor=secondary_color, strokeWidth=2))
+    # Line from 140 to 195
+    d.add(Line(140, 40, 195, 40, strokeColor=secondary_color, strokeWidth=2))
     # Arrowhead
-    d.add(Polygon([185, 45, 195, 40, 185, 35], fillColor=secondary_color, strokeColor=secondary_color))
-    d.add(String(140, 48, "Multipart API", fontName="Helvetica-Oblique", fontSize=7, fillColor=text_color))
+    d.add(Polygon([190, 45, 195, 40, 190, 35], fillColor=secondary_color, strokeColor=secondary_color))
+    d.add(String(167.5, 48, "Multipart API", fontName="Helvetica-Oblique", fontSize=7, fillColor=text_color, textAnchor="middle"))
 
     # 2. Backend Box
-    d.add(Rect(195, 10, 130, 60, fillColor=bg_color, strokeColor=primary_color, strokeWidth=2, rx=5, ry=5))
-    d.add(String(215, 45, "API Server (FastAPI)", fontName="Helvetica-Bold", fontSize=11, fillColor=primary_color))
-    d.add(String(225, 25, "Render Web Service", fontName="Helvetica", fontSize=8, fillColor=text_color))
+    # x=195, width=140 -> Center = 265
+    d.add(Rect(195, 10, 140, 60, fillColor=bg_color, strokeColor=primary_color, strokeWidth=2, rx=5, ry=5))
+    d.add(String(265, 45, "API Server (FastAPI)", fontName="Helvetica-Bold", fontSize=10, fillColor=primary_color, textAnchor="middle"))
+    d.add(String(265, 25, "Render Web Service", fontName="Helvetica", fontSize=8, fillColor=text_color, textAnchor="middle"))
     
     # Arrow 2: Backend -> ML Model
-    d.add(Line(325, 40, 385, 40, strokeColor=secondary_color, strokeWidth=2))
-    d.add(Polygon([380, 45, 390, 40, 380, 35], fillColor=secondary_color, strokeColor=secondary_color))
-    d.add(String(335, 48, "Inference Req", fontName="Helvetica-Oblique", fontSize=7, fillColor=text_color))
+    # Line from 335 to 390
+    d.add(Line(335, 40, 390, 40, strokeColor=secondary_color, strokeWidth=2))
+    d.add(Polygon([385, 45, 390, 40, 385, 35], fillColor=secondary_color, strokeColor=secondary_color))
+    d.add(String(362.5, 48, "Inference Req", fontName="Helvetica-Oblique", fontSize=7, fillColor=text_color, textAnchor="middle"))
 
     # 3. ML Model Box
-    d.add(Rect(390, 10, 120, 60, fillColor=bg_color, strokeColor=primary_color, strokeWidth=2, rx=5, ry=5))
-    d.add(String(410, 45, "ML Engine (PyTorch)", fontName="Helvetica-Bold", fontSize=11, fillColor=primary_color))
-    d.add(String(415, 25, "ResNet-50 Classifier", fontName="Helvetica", fontSize=8, fillColor=text_color))
+    # x=390, width=130 -> Center = 455
+    d.add(Rect(390, 10, 130, 60, fillColor=bg_color, strokeColor=primary_color, strokeWidth=2, rx=5, ry=5))
+    d.add(String(455, 45, "ML Engine (PyTorch)", fontName="Helvetica-Bold", fontSize=10, fillColor=primary_color, textAnchor="middle"))
+    d.add(String(455, 25, "ResNet-50 Classifier", fontName="Helvetica", fontSize=8, fillColor=text_color, textAnchor="middle"))
     
     # Arrow 3 (Return): ML Model -> Backend
-    d.add(Line(385, 20, 325, 20, strokeColor=secondary_color, strokeWidth=1.5))
-    d.add(Polygon([330, 23, 320, 20, 330, 17], fillColor=secondary_color, strokeColor=secondary_color))
-    d.add(String(335, 10, "Prediction Output", fontName="Helvetica-Oblique", fontSize=7, fillColor=text_color))
+    d.add(Line(390, 20, 335, 20, strokeColor=secondary_color, strokeWidth=1.5))
+    d.add(Polygon([340, 23, 335, 20, 340, 17], fillColor=secondary_color, strokeColor=secondary_color))
+    d.add(String(362.5, 10, "Prediction Output", fontName="Helvetica-Oblique", fontSize=7, fillColor=text_color, textAnchor="middle"))
     
     # Vertical Arrow: Backend <-> Database
-    d.add(Line(260, 70, 260, 130, strokeColor=secondary_color, strokeWidth=2))
-    d.add(Polygon([255, 75, 260, 65, 265, 75], fillColor=secondary_color, strokeColor=secondary_color))
-    d.add(Polygon([255, 125, 260, 135, 265, 125], fillColor=secondary_color, strokeColor=secondary_color))
-    d.add(String(268, 98, "Read/Write SQL", fontName="Helvetica-Oblique", fontSize=7, fillColor=text_color))
+    # Line at x=265, from y=70 to y=135
+    d.add(Line(265, 70, 265, 135, strokeColor=secondary_color, strokeWidth=2))
+    d.add(Polygon([260, 75, 265, 65, 270, 75], fillColor=secondary_color, strokeColor=secondary_color))
+    d.add(Polygon([260, 130, 265, 140, 270, 130], fillColor=secondary_color, strokeColor=secondary_color))
+    # Offset the label slightly to the right of the vertical line
+    d.add(String(272, 98, "Read/Write SQL", fontName="Helvetica-Oblique", fontSize=7, fillColor=text_color))
 
     # 4. Database Box
-    d.add(Rect(195, 135, 130, 60, fillColor=bg_color, strokeColor=primary_color, strokeWidth=2, rx=5, ry=5))
-    d.add(String(220, 170, "Relational DB", fontName="Helvetica-Bold", fontSize=11, fillColor=primary_color))
-    d.add(String(205, 150, "SQLite (retino_db.sqlite)", fontName="Helvetica", fontSize=8, fillColor=text_color))
+    # x=195, width=140 -> Center = 265
+    d.add(Rect(195, 140, 140, 60, fillColor=bg_color, strokeColor=primary_color, strokeWidth=2, rx=5, ry=5))
+    d.add(String(265, 175, "Relational DB", fontName="Helvetica-Bold", fontSize=11, fillColor=primary_color, textAnchor="middle"))
+    d.add(String(265, 155, "SQLite (retino_db.sqlite)", fontName="Helvetica", fontSize=8, fillColor=text_color, textAnchor="middle"))
 
     return d
 
@@ -97,8 +105,8 @@ def build_pdf():
         'CoverSubtitle',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=14,
-        leading=18,
+        fontSize=13,
+        leading=17,
         textColor=secondary_color,
         spaceAfter=40
     )
@@ -178,23 +186,25 @@ def build_pdf():
     # ------------------ COVER PAGE ------------------
     story.append(Spacer(1, 40))
     story.append(Paragraph("👁️ OCUVISION AI", title_style))
-    story.append(Paragraph("Deep Learning Retinal Screening Platform for Diabetic Retinopathy Detection", subtitle_style))
+    story.append(Paragraph("Deep Learning Retinal Screening Platform for Diabetic Retinopathy Staging", subtitle_style))
     
     story.append(Spacer(1, 20))
     
     meta_content = """
-    <b>Technical Documentation & Project Report</b><br/><br/>
-    <b>Prepared By:</b><br/>
+    <b>TECHNICAL DOCUMENTATION & PROJECT REPORT</b><br/>
+    <i>Prepared specifically for: <b>Evolothon 1.0 Hackathon Submission</b> (Hosted by Evolotek)</i><br/><br/>
+    <b>Developed By:</b><br/>
     Krishna Agarwal<br/>
     Prakhar Goel<br/><br/>
+    <b>Submission Tracks:</b> AI & Automation / Health & EdTech<br/>
     <b>Date:</b> July 2026<br/>
     <b>GitHub Code Link:</b> <font color="#3282b8">https://github.com/Krishna-Agarwal04/OcuVision-AI</font><br/>
     <b>Live App Link:</b> <font color="#3282b8">https://ocu-vision-ai.vercel.app</font>
     """
     story.append(Paragraph(meta_content, meta_style))
-    story.append(Spacer(1, 100))
+    story.append(Spacer(1, 80))
     
-    story.append(Paragraph("<font color='#64748b'>This documentation covers the technical specifications, system architecture, database models, deep learning parameters, and production deployment details of the OcuVision AI platform.</font>", body_style))
+    story.append(Paragraph("<font color='#64748b'>This report details the technical architecture, custom machine learning pipeline, class-imbalance optimizations, database design, and scaling roadmap of OcuVision AI, created for the Evolothon 1.0 Innovation competition.</font>", body_style))
     story.append(PageBreak())
     
     # ------------------ SECTION 1: EXECUTIVE SUMMARY ------------------
@@ -204,7 +214,7 @@ def build_pdf():
         body_style
     ))
     story.append(Paragraph(
-        "<b>OcuVision AI</b> solves this accessibility barrier by providing a high-performance, web-based intelligent diagnostic platform. Using <b>ResNet-50 Convolutional Neural Networks</b>, the system classifies retinal fundus images into five distinct severity stages (No DR, Mild, Moderate, Severe, Proliferative DR) in real-time. Designed as a production monorepo, the project provides a fully integrated clinician login portal, an interactive screening dashboard, and historical patient scan log tables.",
+        "<b>OcuVision AI</b> is designed for the <b>AI & Automation</b> and <b>Health & EdTech</b> tracks of <b>Evolothon 1.0</b>. It solves this accessibility barrier by providing a high-performance, web-based intelligent diagnostic platform. Using <b>ResNet-50 Convolutional Neural Networks</b>, the system classifies retinal fundus images into five distinct severity stages (No DR, Mild, Moderate, Severe, Proliferative DR) in real-time. Designed as a production monorepo, the project provides a fully integrated clinician login portal, an interactive screening dashboard, and historical patient scan log tables.",
         body_style
     ))
     
@@ -258,7 +268,7 @@ def build_pdf():
     # ------------------ SECTION 3: SYSTEM ARCHITECTURE ------------------
     story.append(Paragraph("3. System Architecture Diagram", h1_style))
     story.append(Paragraph(
-        "The diagram below describes the data flow. The Next.js frontend sends image data in a multipart form-data request to the FastAPI server. FastAPI saves the metadata to the SQLite DB and performs inference through the PyTorch module, returning a JSON response.",
+        "The diagram below describes the transactional data flow. The Next.js frontend sends image data in a multipart form-data request to the FastAPI server. FastAPI saves the metadata to the SQLite DB and performs inference through the PyTorch module, returning a JSON response.",
         body_style
     ))
     story.append(Spacer(1, 10))
