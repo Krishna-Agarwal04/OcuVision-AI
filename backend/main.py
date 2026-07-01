@@ -7,9 +7,9 @@ import uuid
 import os
 from typing import List
 
-from .database import SessionLocal, engine, Base
-from .models import User, Prediction
-from .ml_model import model_instance
+from database import SessionLocal, engine, Base
+from models import User, Prediction
+from ml_model import model_instance
 
 # Create DB tables
 Base.metadata.create_all(bind=engine)
