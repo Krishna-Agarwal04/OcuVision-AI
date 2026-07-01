@@ -9,7 +9,6 @@ env/
 venv/
 
 # Deep Learning weights & database (Very large files)
-model.pth
 retino_db.sqlite
 uploads/
 dataset/
