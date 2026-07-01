@@ -1,3 +1,13 @@
+---
+title: OcuVision AI
+emoji: 👁️
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # 👁️ OcuVision AI - Retinal Screening Platform
 
 OcuVision AI is a production-grade, AI-powered healthcare web application designed for early detection and grading of **Diabetic Retinopathy (DR)** using Deep Learning. Built with a modern **Next.js (React)** frontend and a robust **FastAPI (Python)** backend, the platform enables clinical practitioners to upload retinal fundus images and receive instantaneous, highly confident severity classifications.
