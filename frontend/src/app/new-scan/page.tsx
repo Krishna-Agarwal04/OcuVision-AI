@@ -31,7 +31,8 @@ export default function NewScan() {
       formData.append("file", file);
       formData.append("user_id", user.id.toString());
 
-      const res = await fetch("http://localhost:8000/predict", {
+      const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const res = await fetch(`${apiBase}/predict`, {
         method: "POST",
         body: formData,
       });

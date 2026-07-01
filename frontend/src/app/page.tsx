@@ -16,9 +16,10 @@ export default function AuthPage() {
 
     const formData = new FormData(e.currentTarget);
     const endpoint = isLogin ? "/login" : "/register";
+    const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
     try {
-      const res = await fetch(`http://localhost:8000${endpoint}`, {
+      const res = await fetch(`${apiBase}${endpoint}`, {
         method: "POST",
         body: formData,
       });

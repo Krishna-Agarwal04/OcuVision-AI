@@ -15,7 +15,8 @@ export default function Dashboard() {
         if (!stored) return;
         const user = JSON.parse(stored);
         
-        const res = await fetch(`http://localhost:8000/history/${user.id}`);
+        const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+        const res = await fetch(`${apiBase}/history/${user.id}`);
         const data = await res.json();
         setHistory(data);
       } catch (error) {
